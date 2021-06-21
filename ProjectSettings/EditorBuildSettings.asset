@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Ultimate Trivia Quiz Game Kit/Scenes/Game.unity
+    guid: def22bcdd157b3f4f80e75babc840335
   m_configObjects: {}
