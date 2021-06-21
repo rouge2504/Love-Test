@@ -14,6 +14,8 @@ public class QuizPanelController : MonoBehaviour
     [SerializeField] CircularTimer timer;
     [SerializeField] Text quizSequenceText;
     [SerializeField] Text quizText;
+    [SerializeField] Text quizTextArea;
+    [SerializeField] private GameObject contentImage;
 
     [SerializeField] Animator correctAnimator;
     [SerializeField] Animator incorrectAnimator;
@@ -51,6 +53,7 @@ public class QuizPanelController : MonoBehaviour
         this.quizArea.SetActive(true);
         this.pangEffectImage.DOFade(0f, 0f);
         this.quizCardEffectImage.DOFade(0f, 0f);
+        
     }
 
     public void SetQuiz(Quiz quiz, int quizSequence)
@@ -61,7 +64,8 @@ public class QuizPanelController : MonoBehaviour
         string quizSequenceText = (++quizSequence).ToString();
         this.quizText.text = quiz.question;
         this.quizSequenceText.text = quizSequenceText;
-
+        this.quizTextArea.text = "";
+        contentImage.SetActive(false);
         switch (quiz.type)
         {
             case 1:
@@ -75,13 +79,24 @@ public class QuizPanelController : MonoBehaviour
                 exampleButtonArea.GetComponent<ExampleButtonAreaPanelController>().SetExamples(quiz);
                 buttonAreaPanelController = exampleButtonArea.GetComponent<ExampleButtonAreaPanelController>();
                 break;
+            case 3:
+                oxButtonArea.SetActive(false);
+                exampleButtonArea.SetActive(true);
+                exampleButtonArea.GetComponent<ExampleButtonAreaPanelController>().SetExamples(quiz);
+                buttonAreaPanelController = exampleButtonArea.GetComponent<ExampleButtonAreaPanelController>();
+                this.quizText.text = "";
+                this.quizTextArea.text = quiz.question;
+                contentImage.SetActive(true);
+                contentImage.GetComponentInChildren<RawImage>().texture = quiz.image;
+                break;
             default:
                 oxButtonArea.SetActive(false);
                 exampleButtonArea.SetActive(false);
                 buttonAreaPanelController = null;
                 break;
         }
-        this.timer.StartTimer();
+        timer.gameObject.SetActive(false);
+        //this.timer.StartTimer();
     }
 
     public void ShowResult(ResultType type)

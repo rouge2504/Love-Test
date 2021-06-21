@@ -10,4 +10,5 @@ public class Quiz
     public string e01;
     public string e02;
     public string e03;
+    public UnityEngine.Texture image;
 }

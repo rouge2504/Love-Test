@@ -1,0 +1,10 @@
+﻿<columns units="px">
+  <column name="question" type="Text" />
+  <column name="description" type="Text" />
+  <column name="type" type="Number" format="G" nulltext="-" alignment="Right" />
+  <column name="answer" type="Text" />
+  <column name="e01" type="Text" />
+  <column name="e012" type="Text" />
+  <column name="e03" type="Text" />
+  <column name="Image" type="Text" />
+</columns>

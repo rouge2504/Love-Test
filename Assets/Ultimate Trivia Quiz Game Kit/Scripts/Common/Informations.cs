@@ -18,7 +18,7 @@ static class Informations
     {
         get
         {
-            return PlayerPrefs.GetInt(Constants.CurrentHeartAmountKey, 3);
+            return PlayerPrefs.GetInt(Constants.CurrentHeartAmountKey, 10000);
         }
         set
         {

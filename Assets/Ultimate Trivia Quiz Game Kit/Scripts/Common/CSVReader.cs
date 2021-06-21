@@ -18,7 +18,7 @@ public class CSVReader
         {
             if(instance == null)
             {
-                instance = new CSVReader("Data/quizzes");
+                instance = new CSVReader("Data/LoveTest");
             }
             return instance;
         }
@@ -93,11 +93,19 @@ public class CSVReader
                         case 6:
                             entry.e03 = value;
                             break;
+                        case 7:
+                            entry.image = GetImage(value);
+                            break;
                     }
                 }
                 list.Add(entry);
             }
         }
         return list;
+    }
+
+    private Texture GetImage(string nameImage)
+    {
+        return Resources.Load<Texture>("Data/Love/" + nameImage);
     }
 }
