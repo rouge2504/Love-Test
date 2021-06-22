@@ -75,9 +75,12 @@ public class CSVReader
                     switch (j)
                     {
                         case 0:
-                            entry.description = value;
+                            entry.title = value;
                             break;
                         case 1:
+                            entry.description = value;
+                            break;
+                        case 2:
                             entry.image = GetImage(value);
                             break;
                     }
@@ -91,7 +94,7 @@ public class CSVReader
     public List<Quiz> Read(int stageNum)
     {
         var list = new List<Quiz>();
-
+        Constants.stageNum = stageNum;
         if (lines.Length > 1)
         {
             int startLineIndex = stageNum * Constants.quizCountInStage + 1;

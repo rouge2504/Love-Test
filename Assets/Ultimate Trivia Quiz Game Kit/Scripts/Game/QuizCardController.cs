@@ -14,12 +14,11 @@ public class QuizCardController : CardController
     private int currentQuizSequence;
     private int maxQuizAmount;
 
-    [HideInInspector] public int[] counterQuiz;
 
     protected override void Awake()
     {
         instance = this;
-        counterQuiz = new int[3];
+        
         base.Awake();
     }
 
@@ -49,7 +48,7 @@ public class QuizCardController : CardController
     public void OnClickExampleButton(int buttonIndex)
     {
         this.quizPanelController.SetInteractableButtons(false);
-        counterQuiz[buttonIndex]++;
+        GameCanvasController.instance.counterQuiz[buttonIndex]++;
         this.quizPanelController.SetCorrectIncorrectButton(buttonIndex, true);
 
         this.gameCanvasController.ChangeBackgrounColor(true);
@@ -103,6 +102,8 @@ public class QuizCardController : CardController
             });
         }*/
     }
+
+
 
     public void OnClickNextButton()
     {

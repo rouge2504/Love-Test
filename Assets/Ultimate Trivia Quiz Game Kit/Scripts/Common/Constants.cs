@@ -3,7 +3,8 @@
     public const string CurrentStageIndexKey = "CURRENT_STAGE_INDEX";
     public const string CurrentHeartAmountKey = "CURRENT_HEART_AMOUNT";
     public const string IsNoAdsKey = "IS_NOADS";
-    public const int quizCountInStage = 5;
+    public const int quizCountInStage = 15;
+    public static int stageNum = 0;
 
     // Settings
     public const string IsPlayBGMKey = "PLAY_BGM";

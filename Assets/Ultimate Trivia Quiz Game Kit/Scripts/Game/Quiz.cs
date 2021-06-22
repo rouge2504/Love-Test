@@ -17,6 +17,7 @@ public class Quiz
 
 public class Quiz_Result
 {
+    public string title;
     public string description;
     public UnityEngine.Texture image;
 }

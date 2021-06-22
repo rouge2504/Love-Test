@@ -7,11 +7,13 @@ using DG.Tweening;
 
 public class GameCanvasController : MonoBehaviour
 {
+    public static GameCanvasController instance;
     [SerializeField] RectTransform gamePanel;
     [SerializeField] GameObject levelBoxPrefab;
     [SerializeField] GameObject quizCardPrefab;
     [SerializeField] GameObject descriptionCardPrefab;
     [SerializeField] GameObject stageClearPrefab;
+    [SerializeField] GameObject finishQuizPrefab;
 
     [SerializeField] AudioClip finishGameSFX;
 
@@ -33,8 +35,16 @@ public class GameCanvasController : MonoBehaviour
 
     [SerializeField] private Color32 answerQuestion;
 
+    public Color32 colorFinish;
+
+    public Color32 dimPanel;
+
+    [HideInInspector] public int[] counterQuiz;
+
     private void Awake()
     {
+        instance = this;
+        counterQuiz = new int[3];
         gamePanelImage = this.gamePanel.GetComponent<Image>();
         audioSource = GetComponent<AudioSource>();
     }
@@ -78,6 +88,22 @@ public class GameCanvasController : MonoBehaviour
                 }
             });
         }
+    }
+
+    public int GetResultQuiz()
+    {
+        int temp = 0;
+        int temp_it = 0;
+        for (int i = 0; i < counterQuiz.Length; i++)
+        {
+            if (counterQuiz[i] > temp)
+            {
+                temp = counterQuiz[i];
+                temp_it = i;
+            }
+        }
+        temp_it = ((Constants.stageNum - 1) * Constants.stageNum) + temp_it;
+        return temp_it;
     }
 
     public void PreviousQuiz()
@@ -155,7 +181,11 @@ public class GameCanvasController : MonoBehaviour
                     Informations.StageIndex++;
 
                     // Show the "Stage Clear" panel
-                    StageClear stageClear = Instantiate(stageClearPrefab, this.gamePanel).GetComponent<StageClear>();
+
+                    FinishQuiz finishQuiz = Instantiate(finishQuizPrefab, this.gamePanel).GetComponent<FinishQuiz>();
+
+                    finishQuiz.Show(10, StartGameCanvas, Informations.StageIndex);    
+                    /*StageClear stageClear = Instantiate(stageClearPrefab, this.gamePanel).GetComponent<StageClear>();
 
                     stageClear.Show(3f, () =>
                     {
@@ -177,10 +207,26 @@ public class GameCanvasController : MonoBehaviour
                                 this.AllClearGame();
                             });
                         }
-                    });
+                    });*/
                 }
             });
         }
+    }
+
+    public void ChangeBackgroundColor (Color32 color)
+    {
+        float duration = 3f;
+        float startDuration = 0.2f;
+        float endDuration = 1f;
+        this.gamePanelImage.DOBlendableColor(color, startDuration);
+
+        DOVirtual.DelayedCall(duration, () =>
+        {
+            this.gamePanelImage.DOBlendableColor(color, endDuration).OnComplete(() =>
+            {
+
+            });
+        });
     }
 
     public void ChangeBackgrounColor(bool isCorrect)
