@@ -8,6 +8,7 @@ public class CSVReader
     private string LINE_SPLIT_RE = @"\r\n|\n\r|\n|\r";
     private char[] TRIM_CHARS = { '\"' };
     private TextAsset data;
+    private TextAsset data_result;
     private string[] lines;
     private int totalStage;
 
@@ -18,7 +19,7 @@ public class CSVReader
         {
             if(instance == null)
             {
-                instance = new CSVReader("Data/LoveTest");
+                instance = new CSVReader("Data/Love/LoveTest");
             }
             return instance;
         }
@@ -35,6 +36,7 @@ public class CSVReader
     public CSVReader(string fileName)
     {
         data = Resources.Load(fileName) as TextAsset;
+        data_result = Resources.Load(fileName + "_result") as TextAsset;
         lines = Regex.Split(data.text, LINE_SPLIT_RE);
 
         if(lines != null)
@@ -47,6 +49,43 @@ public class CSVReader
             totalStage = 0;
         }
 
+    }
+
+    public List<Quiz_Result> ReadResult(int result)
+    {
+        var list = new List<Quiz_Result>();
+        string[] lines = Regex.Split(data_result.text, LINE_SPLIT_RE);
+        if (lines.Length > 1)
+        {
+            int startLineIndex = result * Constants.quizCountInStage + 1;
+            int endLineIndex = (lines.Length <= startLineIndex + Constants.quizCountInStage) ? lines.Length : startLineIndex + Constants.quizCountInStage;
+
+            var header = Regex.Split(lines[0], SPLIT_RE);
+            for (var i = startLineIndex; i < endLineIndex; i++)
+            {
+                var values = Regex.Split(lines[i], SPLIT_RE);
+                if (values.Length == 0 || values[0] == "") continue;
+
+                Quiz_Result entry = new Quiz_Result();
+                for (var j = 0; j < header.Length && j < values.Length; j++)
+                {
+                    string value = values[j];
+                    value = value.TrimStart(TRIM_CHARS).TrimEnd(TRIM_CHARS).Replace("\\", "");
+
+                    switch (j)
+                    {
+                        case 0:
+                            entry.description = value;
+                            break;
+                        case 1:
+                            entry.image = GetImage(value);
+                            break;
+                    }
+                }
+                list.Add(entry);
+            }
+        }
+        return list;
     }
 
     public List<Quiz> Read(int stageNum)

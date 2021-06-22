@@ -3,6 +3,8 @@ using DG.Tweening;
 
 public class QuizCardController : CardController
 {
+    public static QuizCardController instance;
+
     [SerializeField] QuizPanelController quizPanelController;
     [SerializeField] NextPanelController nextPanelController;
     [SerializeField] AudioClip correctSFX;
@@ -12,8 +14,12 @@ public class QuizCardController : CardController
     private int currentQuizSequence;
     private int maxQuizAmount;
 
+    [HideInInspector] public int[] counterQuiz;
+
     protected override void Awake()
     {
+        instance = this;
+        counterQuiz = new int[3];
         base.Awake();
     }
 
@@ -43,8 +49,24 @@ public class QuizCardController : CardController
     public void OnClickExampleButton(int buttonIndex)
     {
         this.quizPanelController.SetInteractableButtons(false);
-        
-        if (buttonIndex + 1 == this.quiz.answer)
+        counterQuiz[buttonIndex]++;
+        this.quizPanelController.SetCorrectIncorrectButton(buttonIndex, true);
+
+        this.gameCanvasController.ChangeBackgrounColor(true);
+        this.quizPanelController.ShowResult(QuizPanelController.ResultType.CORRECT);
+        this.QuizCardEffect(true);
+
+        DOVirtual.DelayedCall(3f, () =>
+        {
+            this.rectTransform.DOScaleX(0f, 0.2f).SetEase(Ease.InBack).OnComplete(() =>
+            {
+                this.ShowSubPanel(SubPanelType.NEXT);
+                //this.nextPanelController.SetPanel(true);
+                OnClickNextButton();
+                this.rectTransform.DOScaleX(1f, 0.2f).SetEase(Ease.OutBack);
+            });
+        });
+        /*if (buttonIndex + 1 == this.quiz.answer)
         {
             this.quizPanelController.SetCorrectIncorrectButton(buttonIndex, true);
 
@@ -57,8 +79,8 @@ public class QuizCardController : CardController
                 this.rectTransform.DOScaleX(0f, 0.2f).SetEase(Ease.InBack).OnComplete(() =>
                 {
                     this.ShowSubPanel(SubPanelType.NEXT);
-                    this.nextPanelController.SetPanel(true);
-
+                    //this.nextPanelController.SetPanel(true);
+                    OnClickNextButton();
                     this.rectTransform.DOScaleX(1f, 0.2f).SetEase(Ease.OutBack);
                 });
             });
@@ -76,11 +98,10 @@ public class QuizCardController : CardController
                 {
                     this.ShowSubPanel(SubPanelType.NEXT);
                     this.nextPanelController.SetPanel(false);
-
                     this.rectTransform.DOScaleX(1f, 0.2f).SetEase(Ease.OutBack);
                 });
             });
-        }
+        }*/
     }
 
     public void OnClickNextButton()

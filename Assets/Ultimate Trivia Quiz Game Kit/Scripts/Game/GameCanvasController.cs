@@ -31,6 +31,8 @@ public class GameCanvasController : MonoBehaviour
 
     private List<Quiz> quizList;
 
+    [SerializeField] private Color32 answerQuestion;
+
     private void Awake()
     {
         gamePanelImage = this.gamePanel.GetComponent<Image>();
@@ -189,11 +191,11 @@ public class GameCanvasController : MonoBehaviour
 
         if (isCorrect)
         {
-            this.gamePanelImage.DOBlendableColor(new Color32(41, 171, 226, 255), startDuration);
+            this.gamePanelImage.DOBlendableColor(answerQuestion, startDuration);
 
             DOVirtual.DelayedCall(duration, () =>
             {
-                this.gamePanelImage.DOBlendableColor(new Color32(242, 68, 149, 255), endDuration).OnComplete(() =>
+                this.gamePanelImage.DOBlendableColor(answerQuestion, endDuration).OnComplete(() =>
                 {
 
                 });

@@ -12,3 +12,11 @@ public class Quiz
     public string e03;
     public UnityEngine.Texture image;
 }
+
+[Serializable]
+
+public class Quiz_Result
+{
+    public string description;
+    public UnityEngine.Texture image;
+}
