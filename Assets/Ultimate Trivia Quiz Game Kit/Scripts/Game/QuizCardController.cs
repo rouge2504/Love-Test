@@ -62,6 +62,7 @@ public class QuizCardController : CardController
                 this.ShowSubPanel(SubPanelType.NEXT);
                 //this.nextPanelController.SetPanel(true);
                 OnClickNextButton();
+                AdvertisingManager.instance.ShowAdvertising();
                 this.rectTransform.DOScaleX(1f, 0.2f).SetEase(Ease.OutBack);
             });
         });

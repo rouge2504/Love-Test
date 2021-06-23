@@ -6,6 +6,7 @@
     public const int quizCountInStage = 15;
     public const int quizCountInResult = 9;
     public static int stageNum = 0;
+    public const float porcentToShowAdvertising = 30;
 
     // Settings
     public const string IsPlayBGMKey = "PLAY_BGM";
