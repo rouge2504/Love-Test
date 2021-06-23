@@ -68,6 +68,8 @@ public class LevelsPopupController : PopupController
             }
         }
 
+        this.levelButtons[this.levelButtons.Count - 1].Show(LevelButton.LevelButtonType.LAST, this.levelButtons.Count - 1);
+
         int lineIndex = (Informations.StageIndex - 1) / 3;
         float scrollPosition = (lineIndex * 300f) + (lineIndex * 25f);
 

@@ -57,7 +57,8 @@ public class GameCanvasController : MonoBehaviour
         if (quizList.Count > 0)
         {
             levelBox = Instantiate(levelBoxPrefab, gamePanel).GetComponent<LevelBox>();
-            levelBox.ShowAndHide(levelIndex, 0.3f, () =>
+            levelBox.gameObject.SetActive(false);
+            levelBox.ShowAndHide(levelIndex, 0.01f, () =>
             {
                 Destroy(levelBox.gameObject);
                 InitializeQuizCard(levelIndex);

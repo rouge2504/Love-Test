@@ -2161,7 +2161,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: bb7a65c01c5e4cc4fb56770770c18d77, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e38f2347f6a1f4f41a766d46dabb2c1f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2581,7 +2581,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: bb7a65c01c5e4cc4fb56770770c18d77, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e38f2347f6a1f4f41a766d46dabb2c1f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8624,7 +8624,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: bb7a65c01c5e4cc4fb56770770c18d77, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e38f2347f6a1f4f41a766d46dabb2c1f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -9394,10 +9394,10 @@ MonoBehaviour:
   m_ChildAlignment: 1
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 300, y: 300}
+  m_CellSize: {x: 900, y: 600}
   m_Spacing: {x: 25, y: 25}
   m_Constraint: 1
-  m_ConstraintCount: 3
+  m_ConstraintCount: 1
 --- !u!224 &325373624823256941
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9427,6 +9427,7 @@ GameObject:
   m_Component:
   - component: {fileID: 325373624823256941}
   - component: {fileID: 325373624823256940}
+  - component: {fileID: 325373624823256947}
   m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
@@ -9434,6 +9435,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &325373624823256947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 325373624823256946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 0
+  m_VerticalFit: 2
 --- !u!222 &325373624836802124
 CanvasRenderer:
   m_ObjectHideFlags: 0

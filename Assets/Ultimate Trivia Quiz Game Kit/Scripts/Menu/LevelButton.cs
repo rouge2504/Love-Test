@@ -15,7 +15,7 @@ public class LevelButton : MonoBehaviour
 
     private int currentIndex;
 
-    public enum LevelButtonType { NORMAL, CLEAR, LOCK }
+    public enum LevelButtonType { NORMAL, CLEAR, LOCK, LAST }
     private LevelButtonType type;
     private LevelButtonType Type
     {
@@ -49,6 +49,11 @@ public class LevelButton : MonoBehaviour
                     }
                     this.lockButton.SetActive(false);
                     break;
+                case LevelButtonType.LAST:
+                    this.normalButton.SetActive(true);
+                    this.clearButton.SetActive(false);
+                    this.lockButton.SetActive(false);
+                    break;
             }
         }
     }
@@ -61,7 +66,18 @@ public class LevelButton : MonoBehaviour
 
         foreach (Text levelIndexText in levelIndexTexts)
         {
-            levelIndexText.text = (index + 1).ToString();
+            //levelIndexText.text = (index + 1).ToString();
+            levelIndexText.text = "";
+        }
+
+        if (type == LevelButtonType.LAST)
+        {
+
+            foreach (Text levelIndexText in levelIndexTexts)
+            {
+                levelIndexText.text = "Soon new tests";
+            }
+            levelTitle.gameObject.SetActive(false);
         }
     }
 

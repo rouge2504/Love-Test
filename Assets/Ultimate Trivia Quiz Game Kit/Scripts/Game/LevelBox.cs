@@ -33,7 +33,7 @@ public class LevelBox : MonoBehaviour
 
     public void ShowAndHide(int stageIndex,  float duration, DidFinishedShow didFinishedShow = null)
     {
-        this.gameObject.SetActive(true);
+        //this.gameObject.SetActive(true);
 
         this.rectTransform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
         this.rectTransform.DOScale(new Vector3(1f, 1f, 1f), duration).SetEase(Ease.OutBack);
