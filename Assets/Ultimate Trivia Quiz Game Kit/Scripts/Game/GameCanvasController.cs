@@ -53,7 +53,7 @@ public class GameCanvasController : MonoBehaviour
     {
         currentQuizSequence = 0;
         quizList = CSVReader.Instance.Read(levelIndex);
-
+        counterQuiz = new int[3];
         if (quizList.Count > 0)
         {
             levelBox = Instantiate(levelBoxPrefab, gamePanel).GetComponent<LevelBox>();
@@ -102,7 +102,9 @@ public class GameCanvasController : MonoBehaviour
                 temp_it = i;
             }
         }
-        temp_it = ((Constants.stageNum - 1) * Constants.stageNum) + temp_it;
+        Constants.stageNum++;
+        //temp_it = ((Constants.stageNum - 1) * Constants.stageNum) + temp_it;
+        temp_it = ((Constants.stageNum - 1) * 3) + temp_it;
         return temp_it;
     }
 
@@ -179,7 +181,7 @@ public class GameCanvasController : MonoBehaviour
 
                     // Increase stage index
                     Informations.StageIndex++;
-
+                    //Constants.stageNum = Informations.StageIndex;
                     // Show the "Stage Clear" panel
 
                     FinishQuiz finishQuiz = Instantiate(finishQuizPrefab, this.gamePanel).GetComponent<FinishQuiz>();

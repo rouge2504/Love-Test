@@ -65,7 +65,7 @@ public class QuizPanelController : MonoBehaviour
         this.quizText.text = quiz.question;
         this.quizSequenceText.text = quizSequenceText;
         this.quizTextArea.text = "";
-        //contentImage.SetActive(false);
+        contentImage.SetActive(false);
         switch (quiz.type)
         {
             case 1:
