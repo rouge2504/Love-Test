@@ -60,7 +60,7 @@ public class SettingsPopupController : PopupController
     public void OnClickRateGame()
     {
 #if UNITY_ANDROID
-        Application.OpenURL("");
+        Application.OpenURL("http://play.google.com/store/apps/details?id=love.test.horoscope.compatibility.couples");
 #elif UNITY_IPHONE
         Application.OpenURL("");
 #endif

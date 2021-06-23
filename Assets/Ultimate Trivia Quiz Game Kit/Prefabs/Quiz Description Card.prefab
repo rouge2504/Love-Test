@@ -2197,13 +2197,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d40f57ba6d97f8408e37baa342afcf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveToNextSFX: {fileID: 8300000, guid: 6e8772b49f34d402a90016ed445d8a2f, type: 3}
+  moveToNextSFX: {fileID: 8300000, guid: e8b081fdd99555c4285c071f9890a1d0, type: 3}
   moveToPreviousSFX: {fileID: 0}
   confirmPopupPanelPrefab: {fileID: 3812371219454119031, guid: a45738072e00808459378856d3897288,
     type: 3}
   quizPanelController: {fileID: 1247755516874329741}
   nextPanelController: {fileID: 1158156229157532530}
-  correctSFX: {fileID: 8300000, guid: 0a7f1eda24c924b4fb15add113bdb1c2, type: 3}
+  correctSFX: {fileID: 8300000, guid: 682f3bd282e65ca47a1b6a73d6891c26, type: 3}
   incorrectSFX: {fileID: 8300000, guid: c73e960737cb65e4190be2677fdfb32a, type: 3}
 --- !u!82 &8866182387212308207
 AudioSource:
