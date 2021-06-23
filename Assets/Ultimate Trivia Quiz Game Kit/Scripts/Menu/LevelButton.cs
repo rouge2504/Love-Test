@@ -8,6 +8,10 @@ public class LevelButton : MonoBehaviour
     [SerializeField] GameObject lockButton;
 
     [SerializeField] Text[] levelIndexTexts;
+    [SerializeField] Text levelTitle;
+
+
+    private Texture cardTexture;
 
     private int currentIndex;
 
@@ -38,14 +42,20 @@ public class LevelButton : MonoBehaviour
                 case LevelButtonType.CLEAR:
                     this.normalButton.SetActive(false);
                     this.clearButton.SetActive(true);
+                    if (cardTexture != null)
+                    {
+                        Texture2D tex2D = (Texture2D)cardTexture;
+                        this.clearButton.GetComponent<Image>().sprite = Sprite.Create(tex2D, new Rect(0.0f, 0.0f, tex2D.width, tex2D.height), new Vector2(0.5f, 0.5f), 100.0f);
+                    }
                     this.lockButton.SetActive(false);
                     break;
             }
         }
     }
 
-    public void Show(LevelButtonType type, int index)
+    public void Show(LevelButtonType type, int index, Texture texture = null)
     {
+        cardTexture = texture;
         this.Type = type;
         this.currentIndex = index;
 

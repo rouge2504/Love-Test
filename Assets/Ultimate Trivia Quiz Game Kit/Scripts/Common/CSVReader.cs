@@ -58,7 +58,7 @@ public class CSVReader
         if (lines.Length > 1)
         {
             int startLineIndex = result * Constants.quizCountInStage + 1;
-            int endLineIndex = 7;
+            int endLineIndex = Constants.quizCountInResult;
 
             var header = Regex.Split(lines[0], SPLIT_RE);
             for (var i = startLineIndex; i < endLineIndex; i++)

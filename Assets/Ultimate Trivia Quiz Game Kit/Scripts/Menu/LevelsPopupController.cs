@@ -22,7 +22,7 @@ public class LevelsPopupController : PopupController
 
         this.contentArea.sizeDelta = new Vector2(0f, maxContentAreaHeight);
 
-        for (int i = 0; i < CSVReader.Instance.TotalStage; i++)
+        for (int i = 0; i < CSVReader.Instance.TotalStage + 3; i++)
         {
             LevelButton levelButton = Instantiate(levelButtonPrefab, contentArea).GetComponent<LevelButton>();
             this.levelButtons.Add(levelButton);
@@ -36,14 +36,31 @@ public class LevelsPopupController : PopupController
         PopupController popupController = base.Show();
         return popupController;
     }
-
+    public int GetResultQuiz(int it)
+    {
+        int temp = 0;
+        int temp_it = 0;
+        /*for (int i = 0; i < counterQuiz.Length; i++)
+        {
+            if (counterQuiz[i] > temp)
+            {
+                temp = counterQuiz[i];
+                temp_it = i;
+            }
+        }*/
+        it++;
+        //temp_it = ((Constants.stageNum - 1) * Constants.stageNum) + temp_it;
+        temp_it = ((it - 1) * 3) + temp_it;
+        return temp_it;
+    }
     private void ShowLevelButton()
     {
         for (int i = 0; i < this.levelButtons.Count; i++)
         {
             if (i < Informations.StageIndex)
             {
-                this.levelButtons[i].Show(LevelButton.LevelButtonType.CLEAR, i);
+                int it = GetResultQuiz(i);
+                this.levelButtons[i].Show(LevelButton.LevelButtonType.CLEAR, i, CSVReader.Instance.ReadResult(0)[it].image);
             }
             else if (i >= Informations.StageIndex)
             {

@@ -108,6 +108,8 @@ public class GameCanvasController : MonoBehaviour
         return temp_it;
     }
 
+
+
     public void PreviousQuiz()
     {
         if (this.currentQuizSequence - 1 >= 0)
